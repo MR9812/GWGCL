@@ -55,9 +55,6 @@ class GWGRL(nn.Module):
         #self.bn = torch.nn.BatchNorm1d(out_dim)
         self.bn = GroupWhitening1d(num_features=out_dim, num_groups=num_groups)
         #self.bn = Whitening1d(num_features=out_dim)
-        #self.bn = ShuffledGroupWhitening(num_features=out_dim, num_groups=num_groups, engine='symeig')
-        #self.bn = DBN(num_features=out_dim, num_groups=32, num_channels=2, dim=2, eps=1e-4)
-        #self.bn = DecorrelatedNorm(num_features=out_dim)
 
     def get_embedding(self, graph, feat):
         out = self.backbone(graph, feat)
@@ -65,7 +62,6 @@ class GWGRL(nn.Module):
 
     def forward(self, graph, feat):
         h = self.backbone(graph, feat)
-        #h = (h - h.mean(0)) / h.std(0)
         h = self.bn(h)
         
         return h
