@@ -30,7 +30,7 @@ class GroupWhitening1d(nn.Module):
         x = x.view(N, G, D//G)
         x = x - x.mean(dim=0, keepdim=True)
         x = x.transpose(0,1) # G, N, D//G
-        covs = x.transpose(1,2).bmm(x) / (x.size(1) - 1) # G, D//G, D//G, covs为协方差矩阵
+        covs = x.transpose(1,2).bmm(x) / (x.size(1) - 1) 
         #eigenvalues, eigenvectors = torch.symeig(covs.cpu(), eigenvectors=True, upper=True)
         eigenvalues, eigenvectors = torch.linalg.eigh(covs.cpu())
         S, U = eigenvalues.to(x.device), eigenvectors.to(x.device)
