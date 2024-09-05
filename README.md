@@ -10,6 +10,14 @@ We propose GWGCL, a graph contrastive learning method based on feature group whi
 effect of feature divergence, it avoids the collapse of all sample representations to a single point, which is called dimensional collapse. Moreover, GWGCL can achieve better results and higher efficiency without the need for asymmetric networks, projection layers, stopping
 gradients and complex loss function. 
 
+
+## Dependencies
+
+- python 3.9.15
+- torch  2.3.1+cu118
+- dgl    2.3.0+cu118
+- ogb    1.3.6
+
 ## The main experiments
 
 ```
